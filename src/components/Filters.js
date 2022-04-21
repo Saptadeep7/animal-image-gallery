@@ -1,50 +1,38 @@
+import { FILTER_OPTIONS } from '../constants';
 const Filter = (props) => {
   const { currentFilter, changeFilter } = props;
   const changeFilterFn = (value) => {
     value && changeFilter(value);
   };
+
   return (
     <div className="filters">
-      <div
-        className={
-          currentFilter === 'elephant' ? 'each-filter active' : 'each-filter'
-        }
-        onClick={() => changeFilterFn('elephant')}
+      <select
+        className="filter-dropdown"
+        onChange={(e) => changeFilterFn(e.target.value)}
+        value={currentFilter}
       >
-        Elephant
-      </div>
-      <div
-        className={
-          currentFilter === 'tiger' ? 'each-filter active' : 'each-filter'
-        }
-        onClick={() => changeFilterFn('tiger')}
-      >
-        Tiger
-      </div>
-      <div
-        className={
-          currentFilter === 'monkey' ? 'each-filter active' : 'each-filter'
-        }
-        onClick={() => changeFilterFn('monkey')}
-      >
-        Monkey
-      </div>
-      <div
-        className={
-          currentFilter === 'dog' ? 'each-filter active' : 'each-filter'
-        }
-        onClick={() => changeFilterFn('dog')}
-      >
-        Dog
-      </div>
-      <div
-        className={
-          currentFilter === 'marmoset' ? 'each-filter active' : 'each-filter'
-        }
-        onClick={() => changeFilterFn('marmoset')}
-      >
-        Marmoset
-      </div>
+        {FILTER_OPTIONS.map((option, index) => {
+          return (
+            <option key={index} value={option.value}>
+              {option.label}
+            </option>
+          );
+        })}
+      </select>
+      {FILTER_OPTIONS.map((option, index) => {
+        return (
+          <div
+            className={`each-filter ${
+              currentFilter === option.value ? 'active' : ''
+            }`}
+            key={index}
+            onClick={() => changeFilterFn(option.value)}
+          >
+            {option.label}
+          </div>
+        );
+      })}
     </div>
   );
 };

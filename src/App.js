@@ -1,22 +1,24 @@
 import { Suspense, lazy, useState, useEffect } from 'react';
 import { SpinnerInfinity } from 'spinners-react';
-import axios from 'axios';
+import useSWR from 'swr';
 
 import './App.css';
 import Filter from './components/Filters';
 const Gallery = lazy(() => import('./components/Gallery'));
+const fetcher = (...args) =>
+  fetch(...args)
+    .then((res) => res.json())
+    .then((res) => res.results);
 
 function App() {
-  const [images, setImages] = useState([]);
   const [queryFilter, setQueryFilter] = useState('elephant');
   const changeFilterHandler = (value) => {
     value !== null && setQueryFilter(value);
   };
 
   const URL = `https://api.unsplash.com/search/photos?query=${queryFilter}&per_page=35&client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}`;
-  useEffect(() => {
-    axios.get(URL).then((res) => setImages(res.data.results));
-  }, [URL]);
+  const { data } = useSWR(URL, fetcher);
+  useEffect(() => {}, [URL]);
   return (
     <>
       <h1 className="main-heading">My Image Gallery</h1>
@@ -28,7 +30,7 @@ function App() {
           </div>
         }
       >
-        <Gallery images={images} />
+        <Gallery images={data} />
       </Suspense>
     </>
   );
