@@ -24,3 +24,7 @@ Create ".env.development.local" file in root directory and add variable name `RE
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## Live Demo
+
+Open [https://animal-image-gallery.vercel.app](https://animal-image-gallery.vercel.app/) to view the live demo :smiley:
