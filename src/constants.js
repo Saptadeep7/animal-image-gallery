@@ -1,3 +1,4 @@
+export const MAIN_HEADING = 'Animal Image Gallery';
 export const FILTER_OPTIONS = [
   {
     label: 'Elephant',
@@ -24,3 +25,5 @@ export const FILTER_OPTIONS = [
     value: 'macaw',
   },
 ];
+export const API_URL = 'https://api.unsplash.com/search/photos';
+export const IMAGE_PER_PAGE = 30;

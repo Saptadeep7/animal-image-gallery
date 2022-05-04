@@ -1,6 +1,5 @@
 const Image = (props) => {
   const { src, alt, width, id, className, srcSet } = props;
-  console.log('Image Component Render');
 
   return (
     <img

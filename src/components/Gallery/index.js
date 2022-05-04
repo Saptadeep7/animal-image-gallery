@@ -1,8 +1,11 @@
 import { lazy } from 'react';
-const Image = lazy(() => import('./Image'));
+import useImages from '../../customHooks/useImages';
+const Image = lazy(() => import('../Image'));
 
 function Gallery(props) {
-  const { images } = props;
+  const { queryFilter } = props;
+  const { images } = useImages(queryFilter);
+
   return (
     <div className="container">
       {images &&

@@ -1,4 +1,4 @@
-import { FILTER_OPTIONS } from '../constants';
+import { FILTER_OPTIONS } from '../../constants';
 const Filter = (props) => {
   const { currentFilter, changeFilter } = props;
   const changeFilterFn = (value) => {
